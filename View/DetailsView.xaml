@@ -1,0 +1,39 @@
+﻿<controls:MetroWindow x:Class="JobTimer.View.DetailsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JobTimer.View"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        GlowBrush="OrangeRed"
+        Title="DetailsView" Height="295" Width="300">
+
+    <Window.Resources>
+        <Style x:Key="TaskStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontFamily" Value="ONE DAY" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="TimeStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="ONE DAY" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <StackPanel>
+            <Label Style="{StaticResource TaskStyle}" Content="{Binding TaskName}"/>
+            <Label Style="{StaticResource TimeStyle}" ContentStringFormat="Start: {0}" Content="{Binding StartTime}"/>
+            <Label x:Name="EndTime" Style="{StaticResource TimeStyle}" Content="{Binding EndTime}"  ContentStringFormat="End: {0}"/>
+            <Label x:Name="TotalTime" Style="{StaticResource TimeStyle}" Content="{Binding TotalTime}"  ContentStringFormat="Total time: {0}"/>
+            <Label x:Name="Description" Style="{StaticResource TaskStyle}" FontSize="20" Content="Description:"/>
+            <StackPanel>
+                <TextBox x:Name="InfoBox" Margin="5,5,5,5" TextWrapping="Wrap" Height="150" Text="{Binding Description}" LostFocus="InfoBox_OnLostFocus"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>
+

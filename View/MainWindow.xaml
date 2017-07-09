@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<controls:MetroWindow xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:JobTimer" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="JobTimer.MainWindow" mc:Ignorable="d" GlowBrush="OrangeRed" Title="Work timer" Height="350" Width="525" MinHeight="350" MinWidth="600" ResizeMode="CanResizeWithGrip">
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button Content="add task" FontFamily="ONE DAY" Click="AddTask" />
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBox x:Name="Searcher" Background="Transparent" BorderBrush="Transparent" VerticalContentAlignment="Center" FontSize="12" FontFamily="ONE DAY" Text="search task" LostFocus="UIElement_OnLostFocus" TextChanged="TextBoxBase_OnTextChanged" />
+            </StackPanel>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
+    <Window.Resources>
+        <Style x:Key="TaskStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontFamily" Value="ONE DAY" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="TimeStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="ONE DAY" />
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="Board">
+        <ScrollViewer x:Name="Viewer">
+            <StackPanel>
+                <Label x:Name="LabelAllDone" Foreground="DimGray" FontSize="80" FontFamily="ONE DAY">No tasks</Label>
+                <Label x:Name="LabelUndone" Foreground="White" FontSize="30" FontFamily="ONE DAY">Undone tasks:</Label>
+                <ListView x:Name="ScrollViewer" ItemsSource="{Binding Tasks}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Background="OrangeRed" Margin="0,5,0,0">
+                                <Grid>
+                                    <Label VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="TaskName" Content="{Binding TaskName}" Style="{StaticResource TaskStyle}" />
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <Label x:Name="StartTime" Content="{Binding Path=StartTime}" ContentStringFormat="Task started at: {0}" Style="{StaticResource TimeStyle}" />
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button x:Name="EndTask" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" FontFamily="ONE DAY" Content="end" Click="EndTask_OnClick" />
+                                    <Button x:Name="Details" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" FontFamily="ONE DAY" Content="details" Click="DetailTask_OnClick" />
+                                    <Button x:Name="DeleteTask" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" FontFamily="ONE DAY" Content="delete" Click="DeleteTask_OnClick" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label x:Name="LabelZero" Margin="0,5,0,10" Foreground="DimGray" FontSize="30" FontFamily="ONE DAY" Visibility="Collapsed">no results</Label>
+                <Label x:Name="LabelDone" Foreground="White" FontSize="30" FontFamily="ONE DAY">Completed tasks:</Label>
+                <ListView x:Name="ScrollViewerDone" ItemsSource="{Binding TasksDone}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Background="OrangeRed" Margin="0,5,0,0">
+                                <Grid>
+                                    <Label VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="TaskName" Content="{Binding TaskName}" Style="{StaticResource TaskStyle}" />
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <Label x:Name="StartTime" Content="{Binding Path=StartTime}" ContentStringFormat="Task started: {0}" Style="{StaticResource TimeStyle}" />
+                                        <Label x:Name="EndTime" Content="{Binding Path=EndTime}" ContentStringFormat="and ended at: {0}" Style="{StaticResource TimeStyle}" />
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button x:Name="Details" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" FontFamily="ONE DAY" Content="details" Click="DetailTask_OnClick" />
+                                    <Button x:Name="DeleteTask" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" FontFamily="ONE DAY" Content="delete" Click="DeleteDoneTask_OnClick" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label x:Name="LabelZeroDone" Margin="0,5,0,10" Foreground="DimGray" FontSize="30" FontFamily="ONE DAY" Visibility="Collapsed">no results</Label>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</controls:MetroWindow>

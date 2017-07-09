@@ -1,0 +1,22 @@
+﻿<controls:MetroWindow x:Class="JobTimer.View.AddTaskView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JobTimer.View"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        ResizeMode="NoResize"
+        mc:Ignorable="d"
+        GlowBrush="OrangeRed"
+        Title="Add task" Height="335" Width="300">
+    <Grid>
+       <StackPanel Margin="5,5,5,5">
+           <Label Foreground="White" FontFamily="ONE DAY" FontSize="24" Content="enter taskname:"/>
+            <TextBox x:Name="TaskName" Margin="5,5,5,5" FontSize="20" FontFamily="ONE DAY"/>
+            <Label Foreground="White" FontFamily="ONE DAY" FontSize="20" Content="description:"/>
+            <RichTextBox x:Name="TaskDescription" Margin="5,5,5,5" Height="150"/>
+            <Button Background="OrangeRed" Margin="5,0,5,5" Content="Add task" Click="ButtonBase_OnClick" FontSize="18" FontFamily="ONE DAY"/>
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>
+
